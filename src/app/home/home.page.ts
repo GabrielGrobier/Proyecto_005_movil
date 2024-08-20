@@ -19,6 +19,8 @@ export class HomePage {
     })
     await alert.present();
   }
+  
+  //este es un comentario para el commit 
 
   mostrarAlerta(){
     (this.nombre!="" && this.presentAlert("Usuario ", "su nombre es " + this.nombre  ) ||  this.presentAlert("Usuario ", "el campo no puede estar vacio ")) 

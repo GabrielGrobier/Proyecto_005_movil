@@ -9,13 +9,18 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
     path: 'pagina1',
     loadChildren: () => import('./paginas/pagina1/pagina1.module').then( m => m.Pagina1PageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./paginas/login/login.module').then( m => m.LoginPageModule)
+  },
+
 
 ];
 

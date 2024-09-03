@@ -19,7 +19,11 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./paginas/login/login.module').then( m => m.LoginPageModule)
+  },  {
+    path: 'animaciones',
+    loadChildren: () => import('./paginas/animaciones/animaciones.module').then( m => m.AnimacionesPageModule)
   },
+
 
 
 ];

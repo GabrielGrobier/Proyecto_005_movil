@@ -1,13 +1,9 @@
 <ion-app>
-  <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title class="titulos">Titulo</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<app-header [titulo]="'Bienvenido a la APP '"></app-header>
 
 
 <ion-content>
-  <h1 class="titulos"> Registro de usuario  </h1>
+  <h1 class="titulos"> Bienvenido {{nombreUsuario}}  </h1>
   <ion-item>
     <ion-input type="text" label="Nombre" [(ngModel)]="nombre" name="nombre" placeholder="Ingresa tu nombre "></ion-input>
   </ion-item>

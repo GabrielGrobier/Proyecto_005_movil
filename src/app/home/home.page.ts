@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +9,9 @@ import { AlertController } from '@ionic/angular';
 })
 export class HomePage {
   nombre: string ="";
+  nombreUsuario : String ="";
 
-  constructor(public alerta:AlertController) {}
+  constructor(public alerta:AlertController,private storage : Storage) {}
 
   async presentAlert(titulo:string,message:string){
     const alert = await this.alerta.create({
@@ -30,6 +32,12 @@ export class HomePage {
 
   mostrar_nombre(){
     console.log(this.nombre)
+  }
+
+  async ngOnInit(){
+    await this.storage.create();
+    this.nombreUsuario = await this.storage.get("nombre");
+
   }
 
 }

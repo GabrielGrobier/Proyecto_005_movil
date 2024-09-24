@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginPage implements OnInit {
   password : string = ""
 
 
-  constructor(public mensaje:ToastController,public alerta:AlertController, private router:Router) {  }
+  constructor(public mensaje:ToastController,public alerta:AlertController, private router:Router, private storage : Storage) {  }
 
   async MensajeError() {
     const alert = await this.alerta.create({
@@ -40,6 +41,7 @@ export class LoginPage implements OnInit {
       this.MensajeError()
     }
     else{
+      this.storage.set("nombre",this.nombre)
       console.log("inicio de sesion exitoso ")
       this.MensajeCorrecto()
       this.router.navigate(["/home"])
@@ -48,7 +50,8 @@ export class LoginPage implements OnInit {
   }
 
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.storage.create();
   }
 
 }

@@ -1,10 +1,6 @@
 <ion-app>
-  <ion-header>
-    <ion-toolbar>
-      <ion-title class="titulos"> Inicio de sesion </ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+  <app-header [titulo]="'Inicio de sesion '"></app-header>
+  
   <ion-content>
     <ion-item>
       <ion-input type="text" label ="nombre" [(ngModel)]="nombre" name="nombre" placeholder="Ingresa el nombre"></ion-input>

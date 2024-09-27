@@ -42,6 +42,7 @@ export class LoginPage implements OnInit {
     }
     else{
       this.storage.set("nombre",this.nombre)
+      this.storage.set("SessionID",true)
       console.log("inicio de sesion exitoso ")
       this.MensajeCorrecto()
       this.router.navigate(["/home"])

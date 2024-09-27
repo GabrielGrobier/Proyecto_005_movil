@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { Pagina1Page } from './paginas/pagina1/pagina1.page';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    
   },
   {
     path: '',
@@ -18,8 +20,10 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./paginas/login/login.module').then( m => m.LoginPageModule)
-  },  {
+    loadChildren: () => import('./paginas/login/login.module').then( m => m.LoginPageModule),
+    canActivate:[AuthGuard]
+  },
+  {
     path: 'animaciones',
     loadChildren: () => import('./paginas/animaciones/animaciones.module').then( m => m.AnimacionesPageModule)
   },

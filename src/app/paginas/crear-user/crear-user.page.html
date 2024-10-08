@@ -1,5 +1,5 @@
 <ion-app>
-  <app-header [titulo]="'Inicio de sesion '"></app-header>
+  <app-header [titulo]="'Crear usuario  '"></app-header>
   
   <ion-content>
     <ion-item>
@@ -11,11 +11,8 @@
     <ion-item>
       <ion-input type="password" label ="contraseña"[(ngModel)]="password" name="password" placeholder="Ingresa la contraseña"></ion-input>
     </ion-item>
-    <ion-button (click)="ingresar()"  expand="block" >
+    <ion-button (click)="crearUsuario()"  expand="block" >
       Enviar
-    </ion-button>
-    <ion-button [routerLink]="['/crear-user']" expand="block" fill="clear" shape="round">
-      Crear Usuario
     </ion-button>
 
 

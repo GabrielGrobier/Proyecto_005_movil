@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirebaseLoginService } from 'src/app/servicios/firebase-login.service';
 
@@ -7,7 +7,7 @@ import { FirebaseLoginService } from 'src/app/servicios/firebase-login.service';
   templateUrl: './crear-user.page.html',
   styleUrls: ['./crear-user.page.scss'],
 })
-export class CrearUserPage implements OnInit {
+export class CrearUserPage  {
   nombre : string =""
   usuario : string =""
   password : string = ""
@@ -15,12 +15,11 @@ export class CrearUserPage implements OnInit {
   constructor(private access:FirebaseLoginService, router:Router) { }
 
   async crearUsuario(){
-    await this.access.create_user(this.usuario,this.password);
+    await this.access.create_user(this.usuario,this.password,this.nombre);
     }
     
   
+  
 
-  ngOnInit() {
-  }
 
 }

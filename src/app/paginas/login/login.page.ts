@@ -9,6 +9,8 @@ import { Camera,CameraResultType,CameraSource } from '@capacitor/camera';
 import {defineCustomElements} from '@ionic/pwa-elements/loader';
 defineCustomElements(window);
 import { Geolocation } from '@capacitor/geolocation';
+import { SpeechRecognition } from '@capacitor-community/speech-recognition';
+
 
 
 
@@ -41,6 +43,40 @@ export class LoginPage implements OnInit {
   nombre : string =""
   usuario : string =""
   password : string = ""
+  text : string=""
+  
+
+
+  async startListening() {
+    const available = await SpeechRecognition.available();
+    if (!available.available) {
+      console.log('Speech recognition not available');
+      return;
+    }
+
+    await SpeechRecognition.requestPermissions();
+
+    SpeechRecognition.start({
+      language: 'es-ES',
+      maxResults: 1,
+      prompt: 'Di algo ',
+      partialResults: true,
+      popup: true,
+    });
+
+    SpeechRecognition.addListener('partialResults', (data) => {
+      this.text = data.matches[0]; // Captura el primer resultado parcial
+      console.log('Partial results:', this.text);
+    });
+  }
+
+  async stopListening() {
+    await SpeechRecognition.stop();
+    SpeechRecognition.removeAllListeners(); // Limpia los listeners
+  }
+
+
+
 
 
   constructor(public mensaje:ToastController,public alerta:AlertController, private router:Router, private storage : Storage,private access:FirebaseLoginService) { 

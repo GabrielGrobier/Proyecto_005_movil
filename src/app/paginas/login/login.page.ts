@@ -10,6 +10,7 @@ import {defineCustomElements} from '@ionic/pwa-elements/loader';
 defineCustomElements(window);
 import { Geolocation } from '@capacitor/geolocation';
 import { SpeechRecognition } from '@capacitor-community/speech-recognition';
+import { ControladorService } from 'src/app/servicios/controlador.service';
 
 
 
@@ -44,6 +45,7 @@ export class LoginPage implements OnInit {
   usuario : string =""
   password : string = ""
   text : string=""
+  user:any
   
 
 
@@ -79,7 +81,7 @@ export class LoginPage implements OnInit {
 
 
 
-  constructor(public mensaje:ToastController,public alerta:AlertController, private router:Router, private storage : Storage,private access:FirebaseLoginService) { 
+  constructor(public mensaje:ToastController,public alerta:AlertController, private router:Router, private storage : Storage,private access:FirebaseLoginService,private controlador:ControladorService) { 
     this.obtenerUbicacion();
    }
 
@@ -109,6 +111,10 @@ export class LoginPage implements OnInit {
     }
     else{
       this.access.login(this.usuario,this.password).then(()=>{
+        this.controlador.ObtenerDatos(this.usuario).subscribe(user =>{
+          this.user = user;
+        })
+        this.storage.set("datosUsuario",{nombre:this.user.data.nombre,email:this.user.data.email,uid:this.user.data.uid})
         this.storage.set("nombre",this.nombre)
         this.storage.set("SessionID",true)
         console.log("inicio de sesion exitoso ")

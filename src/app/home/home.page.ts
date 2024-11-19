@@ -36,7 +36,9 @@ export class HomePage {
 
   async ngOnInit(){
     await this.storage.create();
-    this.nombreUsuario = await this.storage.get("nombre");
+    const datosusuario = await this.storage.get("datosUsuario")
+    this.nombreUsuario = datosusuario.nombre;
+
 
   }
 

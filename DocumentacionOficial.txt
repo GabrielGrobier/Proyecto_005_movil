@@ -1,0 +1,2 @@
+FireStore escuchar datos 
+https://firebase.google.com/docs/firestore/query-data/listen?hl=es-419
